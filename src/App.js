@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import "./App.css";
 
@@ -24,7 +24,6 @@ function App() {
     const [history, setHistory] = useState([]);
     const [error, setError] = useState("");
 
-    // Load saved conversion history
     useEffect(() => {
         const savedHistory = localStorage.getItem("conversionHistory");
         if (savedHistory) {
@@ -32,7 +31,6 @@ function App() {
         }
     }, []);
 
-    // Fetch all currencies when the application starts
     useEffect(() => {
         async function loadCurrencies() {
             try {
@@ -47,7 +45,7 @@ function App() {
     }, []);
 
     // Convert currency
-    const handleConvert = async () => {
+    const handleConvert = useCallback(async () => {
         setError("");
         if (!amount || amount <= 0) {
             setError("Please enter a valid amount.");
@@ -72,6 +70,7 @@ function App() {
             );
 
             // Save only the latest 5 conversions
+                
             const newHistory = [
                 {
                     amount,
@@ -91,14 +90,14 @@ function App() {
         catch (error) {
             setError("Unable to convert currency.");
         }
-    };
+    }, [amount, fromCurrency, toCurrency, history]);
 
     // Automatically convert when values change
     useEffect(() => {
-        if (currencies.length > 0) {
-            handleConvert();
-        }
-    }, [amount, fromCurrency, toCurrency]);
+    if (currencies.length > 0) {
+        handleConvert();
+    }
+    }, [currencies.length, handleConvert]);
 
     // Fetch exchange rate history for the chart
     useEffect(() => {async function loadHistory() {
@@ -122,7 +121,7 @@ function App() {
         if (currencies.length > 0) {
             loadHistory();
         }
-    }, [fromCurrency, toCurrency]);
+    }, [fromCurrency, toCurrency, currencies.length]);
     
     return (
         <div className="container py-5">
