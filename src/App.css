@@ -1,0 +1,102 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#eef2ff,#f8fafc);
+    min-height:100vh;
+}
+
+/* Main Heading */
+.main-title{
+    font-weight:700;
+    color:#0f172a;
+}
+
+/* Cards */
+.card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+/* Convert Button */
+.btn-success{
+    border-radius:12px;
+    font-weight:600;
+    padding:12px;
+}
+
+/* Inputs */
+.form-control,
+.form-select{
+
+    border-radius:12px;
+    padding:12px;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#198754;
+    box-shadow:0 0 0 .15rem rgba(25,135,84,.2);
+
+}
+
+/* Result */
+
+.result-price{
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+    color:#198754;
+
+}
+
+.rate-text{
+
+    color:#6c757d;
+
+}
+
+/* History */
+
+.history-card{
+
+    background:#f8f9fa;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+}
+
+/* Chart */
+
+.chart-card{
+
+    padding:20px;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .main-title{
+
+        font-size:2rem;
+
+    }
+
+}
